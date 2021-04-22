@@ -92,11 +92,7 @@ public class MutantValidatorServiceImpl implements MutantValidatorService {
      */
     private void validateProteins(List<String> dna) throws LengthProteinWrong, NotContainProtein {
         boolean containProteinInList = true;
-        for (String stringProtein: dna) {
-            if(stringProtein.length() != validLength){
-                log.error("Check you proteins length: {}", dna.toString());
-                throw new LengthProteinWrong("Check you proteins length", new LengthProteinWrong("Check you proteins length" + dna.toString()));
-            }
+        for (String stringProtein: dna) {            
             List<String> eachValueList = Arrays.asList(stringProtein.split(""));
             for (String value : eachValueList) {
                 if(!Arrays.stream(Proteins.values()).anyMatch( x -> x.getNick().equals(value))){
